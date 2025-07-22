@@ -1,0 +1,274 @@
+\documentclass[11pt,compress,slidetop,%handout,
+%
+			   hyperref={unicode},xcolor={svgnames},% sub-package options
+			   %t
+%			   handout
+			   ]{beamer}
+
+\mode<presentation> 									% 
+{
+	\usetheme{boxes}      							% 
+
+% Antibes, Bergen, Berkerley, Berlin, Boadilla, Copenhagen, Darmstadt, Dresden, Frankfurt, Goettingen,
+%  Hannover, Ilmenau, JuanLesPins, Luebeck, Madrid, Malmoe, Marburg, Montpellier, PaloAlto, Pittsburgh, Rochester,
+%  Singapore, Szeged, Warsaw
+%
+	\usecolortheme[named=blue]{structure}		% 
+ 	\usefonttheme[onlymath]{serif}					% 
+  % \useoutertheme{infolines}
+  % or whatever
+
+\setbeamersize{text margin left=6mm, text margin right=6mm}
+
+\setbeamercovered{invisible}
+% \setbeamercovered{transparent}						% overlay 
+  % or whatever (possibly just delete it)
+%  \setbeamercovered{dynamic}
+\setbeamertemplate{footline}
+{
+  \hbox{\begin{beamercolorbox}[wd=1\paperwidth,ht=2.25ex,dp=1ex,right]{framenumber}%
+      \usebeamerfont{framenumber}\textcolor{blue}  \insertframenumber{} 
+    %   / \textcolor{Black} \inserttotalframenumber
+    \hspace*{2ex}
+    \end{beamercolorbox}}%
+  \vskip0pt%
+}
+}
+
+
+\beamertemplatenavigationsymbolsempty % get rid of navigation symbols
+
+\usepackage{verbatim}
+\usepackage{pdfpages}
+\usepackage{multimedia}
+\usepackage{multirow}
+\usepackage{picture}
+\usepackage{pgfplotstable}
+\usepackage{appendixnumberbeamer}
+\usepackage[T3,OT2,T1]{fontenc}
+\usepackage[noenc]{tipa}
+\usepackage{bm}% bold math
+\usepackage{amsmath,amssymb,amscd}
+\usepackage{dsfont}
+\usefonttheme{structurebold}
+\newtheorem{proposition}{Proposition}
+\usepackage{caption}
+\usepackage{subcaption}
+\let\olditem\item
+\renewcommand{\item}{\setlength{\itemsep}{\fill}\olditem}
+
+\usepackage{courier}
+\usepackage{relsize}
+\usepackage{tikz}
+\tikzset{
+% Two node styles for game trees: solid and hollow
+solid node/.style={circle,draw,inner sep=1.5,fill=black},
+hollow node/.style={circle,draw,inner sep=1.5}}
+\usetikzlibrary{arrows,intersections,decorations.pathreplacing,arrows.meta,positioning,calc}
+\usepackage{colortbl}
+\definecolor{Cobalt}{rgb}{0.0,0.28,0.67}
+\definecolor{Venetianred}{rgb}{0.78, 0.03, 0.08}
+%\definecolor{blue}{RGB}{0,114,178} % PGP color
+\definecolor{blue}{RGB}{0,114,178}
+\definecolor{red}{RGB}{240,54,0}
+%\definecolor{red}{RGB}{213,94,0} % PGP color
+\definecolor{yellow}{RGB}{240,228,66}
+\definecolor{green}{RGB}{0,158,115}
+\usepackage{wasysym}
+\setbeamerfont{title}{ 
+series=\bfseries,parent=structure
+}
+%shape=\itshape
+%,family=\rmfamily}%
+\setbeamerfont{frametitle}{
+%family=\rmfamily
+}
+%\usepackage[T1]{fontenc}
+% Or whatever. Note that the encoding and the font should match. If T1
+% does not look nice, try deleting the line with the fontenc.
+%===============================================
+
+% SLIDE 1: TITLE SLIDE
+
+\title 
+{\large Contagion in Debt and Collateral Markets}
+\subtitle{}
+
+\author{\small Jin-Wook Chang\inst{1} \and Grace Chuan\inst{1}}							
+
+\institute[Fed Board] 						
+{\inst{1} Federal Reserve Board}	
+					
+\institute[Federal Reserve Board] 															% (optional, but mostly needed) 
+{Federal Reserve Board}													% full name
+% - Use the \inst command only if there are several affiliations.
+% - Keep it simple, no one is interested in your street address.
+
+%====================================
+%====================================
+\date[ %March 27, 2018
+%February 4, 2017
+]
+ 														% (optional, should be abbreviation of conference name)
+%+===================================
+%====================================
+{
+\small
+June 30-July 2, 2023\\
+ \bigskip
+2023 Asian Meeting of the Econometric Society in Beijing, China
+% Johns Hopkins University
+%\\ Xiamen, China
+%  June 14, 2019\\
+\vspace{0.4in}
+
+\begin{flushleft}
+{\footnotesize 
+This presentation represents the views of the authors and should not be interpreted as reflecting the views of the Federal Reserve System or other members of its staff.}
+\end{flushleft}
+%\today
+}																			% \today
+% - Either use conference name or its abbreviation.
+% - Not really informative to the audience, more for people (including
+%   yourself) who are reading the slides online
+
+\subject{Beamer}
+% This is only inserted into the PDF information catalog. Can be left out.
+
+% Delete this, if you do not want the table of contents to pop up at
+%% the beginning of each subsection:
+%%===============================================
+%%
+%% ====================   ======================
+ \AtBeginSection[]
+{
+ \begin{frame}<beamer>
+    \frametitle{}
+%   \tableofcontents[currentsection,hideallsubsections]\thispagestyle{empty}\addtocounter{framenumber}{-1}
+%   \tableofcontents[currentsection,currentsubsection]\thispagestyle{empty}\addtocounter{framenumber}{-1}
+      \tableofcontents[currentsection]
+%      \thispagestyle{empty}
+      \addtocounter{framenumber}{-1}
+    %\tableofcontents[currentsection,currentsubsections]
+  \end{frame}
+}
+\AtBeginSubsection[]
+{
+ \begin{frame}<beamer>
+    \frametitle{}
+%   \tableofcontents[currentsection,hideallsubsections]\thispagestyle{empty}\addtocounter{framenumber}{-1}
+   \tableofcontents[currentsection,currentsubsection]
+%   \thispagestyle{empty}
+   \addtocounter{framenumber}{-1}
+%      \tableofcontents[currentsection]\thispagestyle{empty}\addtocounter{framenumber}{-1}
+    %\tableofcontents[currentsection,currentsubsections]
+  \end{frame}
+}
+%===============================================
+%
+%
+%==========================   ==============================
+\begin{document}
+%
+%================= 
+\begin{frame}
+  \titlepage\thispagestyle{empty}\addtocounter{framenumber}{-1}
+\end{frame}
+%===============================================
+
+% SLIDE 2: Motivation
+\begin{frame}{Motivation}
+\begin{itemize}
+
+\item Collateralized debt markets:
+\bigskip 
+
+\begin{itemize}
+\item Avg daily trades in US bilateral repo \textbf{$>$ \$4 trillion} for 2019-2021
+
+
+\item Securities lending  \textbf{$>$ \$3 trillion} outstanding contracts in 2021
+    
+\end{itemize}
+\bigskip
+
+
+\item GFC: mortgage prices $\downarrow$ $+$ Lehman Brothers bankruptcy 
+\bigskip
+
+
+\item \textbf{Two channels of contagion}: (1) debt (2) collateral markets\\ (Glasserman and Young, 2016; Upper, 2011)
+\bigskip
+
+
+\end{itemize}
+\end{frame}
+
+
+% % SLIDE 5: Our research questions
+% \begin{frame}{Questions}
+% \begin{itemize}
+% \item How does the network structure affect the pattern of contagion?
+
+% \item How do the two channels of contagion interact?
+
+% \item When do the roles of \textbf{interconnectedness} and \textbf{collateral} change?
+
+% \item How much collateral can lead to a macroprudential state?
+
+% \end{itemize}
+% \end{frame}
+
+% % SLIDE 3: Literature Review (COME BACK)
+% \begin{frame}{Relation to the Literature}
+% \begin{itemize}
+%     \item Financial networks:
+%     \textbf{Acemoglu, Ozdaglar, and Tahbaz-Salehi (2015)}; Allen and Gale (2000); Eisenberg and Noe (2001); Elliot, Golub, and Jackson (2014); Ghamami, Glasserman, and Young (2022)
+%     \bigskip
+   
+%     \item Interaction between counterparty and price channels:
+%     Capponi and Larsson (2015); Cifuentes, Ferrucci, and Shin (2005); Di Maggio and Tahbaz-Salehi (2015); Gai, Haldane, and Kapadia (2011)
+%     \bigskip
+%     \item General equilibrium with collateralized debt:
+%     Chang (2022); Geanakoplos (1997, 2010); Fostel and Geanakoplos (2015);
+% \bigskip
+% \item Fire sales: Duarte and Eisenbach (2021); Greenwood, Landier, and Thesmar (2015)
+% \bigskip
+% \item Role of explicit collateral: Demarzo (2019), Donaldson, Gromb, and Piacentino (2020)
+    
+% \end{itemize}
+
+% \end{frame}
+
+% \begin{frame}{Preview of Results}
+%     \begin{itemize}
+%         \item Phase transition in the role of interconnectedness
+
+        
+%         \item Phase transition in the role of collateral 
+        
+        
+%         \item Importance of explicit collateral and fragility of it
+
+%         \item Threshold levels of collateral for desired level of financial stability
+
+%         \item Flexible model to provide microfoundation to fire-sale spillovers
+%     \end{itemize}
+% \end{frame}
+
+% SLIDE 4: The collateralized debt contract - a definition, to ensure we are all on the same page since collateral can mean different things to different people. or different characteristics of it can be associated with collateral for diff people. important we highlight the important ones we are focusing on
+% \begin{frame}{Background}
+% \begin{itemize}
+% \item Collateralized debt is a one-to-one relationship between borrower and lender
+
+% \item If collateral >= debt, payment always made in full, even if borrower insolvent
+
+% \item If collateral < debt, payment depends on collateral price and borrower's cash
+
+% \item Two transmission channels of shocks: (1) collateral price and (2) counterparty debt
+% \end{itemize}
+% \end{frame}
+
+
+\section{Model}
+\end{document}
